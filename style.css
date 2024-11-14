@@ -1,0 +1,39 @@
+body {
+    text-align: center;
+}
+
+#pantalla {
+    display: grid;
+    grid-template-columns: 20% 1fr;
+}
+
+#interfaz {
+    display: flex;
+    flex-direction: column;
+}
+
+#interfazNombre {
+    background-color: violet;
+    height: 45vh;
+    border: solid 5px black;
+    align-content: center;
+}
+
+#interfazJuego {
+    background-color: red;
+    height: 45vh;
+    border: solid 5px black;
+    align-content: center;
+}
+
+#tablero {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    background-color: aqua;
+}
+
+.celdaDiv {
+    border: grey 1px solid;
+    background-color: aquamarine;
+}
