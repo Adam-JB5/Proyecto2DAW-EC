@@ -17,16 +17,30 @@
         <div id="interfaz">
 
             <div id="interfazNombre">
-                <label for="nombreUsuario">INTRODUCE TU NOMBRE:</label><br><br>
-                    <input type="text" name="nombreUsuario" id="nombreUsuario" autofocus><br><br><br>
-                <button id="nombreButton">ACEPTAR</button> 
+
+                <div id="menuNombre">
+                    <label for="nombreUsuario">INTRODUCE TU NOMBRE:</label><br><br>
+                        <input type="text" name="nombreUsuario" id="nombreUsuario" autofocus maxlength="20"><br><br><br>
+                    <button id="nombreButton">ACEPTAR</button> 
+                </div>
+                
+                <div id="personalizar">
+                    <p>PERSONALIZAR:</p>
+                        <select name="lista" id="lista">
+                            <option value="morado">Morado</option>
+                            <option value="rojo">Rojo</option>
+                            <option value="amarillo">Amarillo</option>
+                            <option value="verde">Verde</option>
+                            <option value="azul">Azul</option>
+                        </select>
+                </div>
             </div>
 
             <div id="interfazJuego">
 
                 <button disabled id="jugarButton">JUGAR</button>
                 <div id="interfazJuegoOcultar">
-                    <img src="./img/DadoP1.png" style="max-width: 80%;" alt="Dado" id="dadoImg"><br>
+                    <img src="./img/DadoP1.png" style="max-width: 80%; height: auto;" alt="Dado" id="dadoImg"><br>
                     <button id="dadoButton">AGITAR DADO</button>
                 </div>
                     
