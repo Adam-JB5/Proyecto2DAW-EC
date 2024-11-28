@@ -119,3 +119,8 @@ h1 {
     max-height: 8vh;
     min-height: 2vh;
 }
+
+.celdaSeleccionable {
+    background-color: red;
+    background-image: none;
+}

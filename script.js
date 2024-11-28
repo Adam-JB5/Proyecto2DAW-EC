@@ -30,11 +30,14 @@ let tablero = document.getElementById("tablero");
 
 
 
-//Variable de control usada en las funciones agitarDado() y tirarDado()
+//Variable global usada en las funciones agitarDado() y tirarDado()
 let dadoAgitado = false;
 
 //Variable global con la ruta del sprite
 let rutaSprite = "./img/Character2Alt1.gif";
+
+//Variable global, numero de tiradas
+let numTiradas = 0;
 
 
 //Esta funcion valida si el nombre tiene el numero correcto de caracteres
@@ -194,49 +197,106 @@ function agitarDado() {
     personalizarLista.setAttribute("disabled", "");
 }
 
-//La funcion tirarDado, cambia la imagen del dado a una generada de forma aleatoria. Solo se hace si dadoAgitado es true, es decir, se ha ejecutado anteoriormente la funcion agitarDado()
+//La funcion tirarDado, cambia la imagen del dado a una generada de forma aleatoria. Solo se hace si dadoAgitado es true, es decir, se ha ejecutado anteoriormente la funcion agitarDado().
 function tirarDado() {
 
     if (dadoAgitado) {
+        //Genero un numero aleatorio entre 1 y 6
         let random = Math.floor(Math.random() * 6 + 1);
         console.log(random);
+        //Cambia la imagen segun el numero generado
         dadoImg.setAttribute("src", `./img/DadoP${random}.png`);
+        //Reinicio dadoAgitado a false
         dadoAgitado = false;
 
+        //Ejecuto la funcion pintarCasillas()
         pintarCasillas(random);
+
+        //Sumo 1 al numero de tiradas
+        numTiradas++;
     }
     
     
 }
 
 
+//La funcion pintarCasillas
 function pintarCasillas(num) {
+
+    //Cambio el color de la casilla en la que se encuentra el heroe
     casillaHeroe.style.backgroundColor = "grey";
-
-    let opcion1 = document.getElementById(`${parseInt(casillaHeroe.id.split(",")[0]) + num},${casillaHeroe.id.split(",")[1]}`);
-    let opcion2 = document.getElementById(`${casillaHeroe.id.split(",")[0]},${parseInt(casillaHeroe.id.split(",")[1]) + num}`);
-
-    console.log(opcion1);
-    console.log(opcion2);
-
-    opcion1.style.backgroundColor = "red";
-    opcion2.style.backgroundColor = "red";
-
-    opcion1.style.backgroundImage = "unset";
-    opcion2.style.backgroundImage = "unset";
-}
+    casillaHeroe.style.backgroundImage = "unset";
 
 
-tablero.addEventListener("click", seleccionarCasilla)
+    let filaHeroe = parseInt(casillaHeroe.id.split(",")[0]);
+    let columnaHeroe = parseInt(casillaHeroe.id.split(",")[1]);
+
+     // Recorro todas las casillas en las 4 direcciones (arriba, abajo, izquierda, derecha)
+     for (let i = 1; i <= num; i++) {
+        // Hacia abajo
+        if (filaHeroe + i < 10) {
+            document.getElementById(`${filaHeroe + i},${columnaHeroe}`).classList.add("celdaSeleccionable");
+        }
+
+        // Hacia arriba
+        if (filaHeroe - i >= 0) {
+            document.getElementById(`${filaHeroe - i},${columnaHeroe}`).classList.add("celdaSeleccionable");
+        }
+
+        // Hacia la derecha
+        if (columnaHeroe + i < 10) {
+            document.getElementById(`${filaHeroe},${columnaHeroe + i}`).classList.add("celdaSeleccionable");
+        }
+
+        // Hacia la izquierda
+        if (columnaHeroe - i >= 0) {
+            document.getElementById(`${filaHeroe},${columnaHeroe - i}`).classList.add("celdaSeleccionable");
+        }
+    }
+
+    dadoButton.setAttribute("disabled", "");
+    dadoButton.setAttribute("title", "Haz clic en una de las casillas rojas");
+
+    let listaCeldasSeleccionables = document.querySelectorAll(".celdaSeleccionable");
+
+    for (const celda of listaCeldasSeleccionables) {
+        celda.addEventListener("click", seleccionarCasilla);
+        celda.style.backgroundImage = "unset";
+    }
+
+
 
 function seleccionarCasilla(ev) {
+
     let casillaSeleccionada = ev.target;
+
+    
+    casillaSeleccionada.innerHTML = `<img id="spritePersonaje" src='${rutaSprite}' alt=''>`;
+    casillaHeroe.innerHTML = "";
+    casillaHeroe = casillaSeleccionada;
+    console.log("He pulsado una roja");
+
+    dadoButton.removeAttribute("disabled");
+
+    for (const celda of listaCeldasSeleccionables) {
+        celda.classList.remove("celdaSeleccionable");
+        celda.removeEventListener("click", seleccionarCasilla);
+    }
+
+    if (casillaSeleccionada.id == "9,9" || casillaSeleccionada.id == "spriteCofre") {
+        acabarJuego();
+    }
+
+}
 
 
 }
 
 
-
+function acabarJuego() {
+    console.log("JUEGO ACABDOOOO");
+    console.log(numTiradas);
+}
 
 
 
