@@ -12,7 +12,7 @@ body {
     overflow-wrap: break-word;
 }
 
-button {
+button, select {
     font-family: 'Bruce';
     border-radius: 8px;
     background-color: #000000;
@@ -22,30 +22,27 @@ button {
     max-width: 80%;
 }
 
-input, label {
+input, label, select {
     max-width: 80%;
+    font-family: 'Bruce';
 }
 
-button:active {
+button:active, select:active {
     background-color: #6C697C;
 }
 
-option:hover {
-    background-color: aqua;
-}
-
-button:hover {
+button:hover, select:hover {
     box-shadow: #ffffff 0px 8px 12px;
 }
 
-button:disabled {
+button:disabled, select:disabled {
     font-family: 'Bruce';
     border-radius: 8px;
     background-color: #0000005f;
     color: #ffffff5f;
 }
 
-button:disabled:hover {
+button:disabled:hover, select:disabled:hover {
     box-shadow: none;
 }
 
@@ -121,6 +118,12 @@ h1 {
 }
 
 .celdaSeleccionable {
-    background-color: red;
-    background-image: none;
+    background-color: #88bae6;
+    background-image: unset !important;
+    border: 3px grey dotted;
+}
+
+.celdaHeroe {
+    background-color: grey !important;
+    background-image: unset !important;
 }
