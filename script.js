@@ -278,6 +278,7 @@ function inicio() {
 
             //Reactivo el boton que gira el dado
             dadoButton.removeAttribute("disabled");
+            dadoButton.removeAttribute("title");
 
             //Elimino la clase y el eventListener a las celdas seleccionables para que vuelvan a su estado inicial
             for (const celda of listaCeldasSeleccionables) {
@@ -295,22 +296,101 @@ function inicio() {
 
     }
 
-
+    //Esta funcion se ejecuta cuando el usuario gane el juego. Se ocupa de almacenar en localStorage nombre de usuario con sus respectivas puntuaciones, tambien creara y mostrara un dialog con distintos elementos los cuales cambiaran segun la puntuacion de la partida actual y las puntuacion almacenadas en localStorage
     function acabarJuego() {
-        console.log("JUEGO ACABDOOOO");
+        console.log("JUEGO ACABADO");
         console.log(numTiradas);
+
+
+        console.log("Storage:" + localStorage.key(0));
+
+        //Creo un nodo h4 al cual le introducire un texto diferente segun se haya superado el record o no
+        let mensajePuntos = document.createElement("h4");
+
+        //Creo un mapa que usare para iterar sobre localStorage
+        let mapaUsuariosPuntos = new Map();
+        //Aqui guardare la puntuacion minima que se encuentre en localStorage, que es el record
+        let min;
+        //Aqui guardare el nombre del usuario con la puntuacion minima
+        let usuarioMin;
+
+        //Si localStorage esta vacio, le informo al usuario y guardo el nombre y tiradas directamente en localStorage
+        if (localStorage.length == 0) {
+            mensajePuntos.innerHTML = "ERES EL PRIMERO EN POSICIONARTE EN EL RANKING";
+            localStorage.setItem(`${nombreUsuario}`, `${numTiradas}`);
+        } else {
+
+            //Si localStorage no esta vacio, lo recorro y guardo en el Map, el contenido de localStorage
+            for (let i = 0; i < localStorage.length ; i++) {
+                mapaUsuariosPuntos.set(`${localStorage.key(i)}`, `${localStorage.getItem(localStorage.key(i))}`);
+                //Asigno a min el primer valor del mapa, para empezar a comparar desde un propio valor del array. Tambien se podria asignar un valor muy alto, pero un usuario podria ponerse a dar vueltas en el tablero y superar ese valor, por lo que al buscar un minimo no se tendra en cuenta la puntuacion de este usuario
+                min = mapaUsuariosPuntos.values().next().value;
+            }
+
+            //Ahora recorro el mapa para recoger el valor minimo que sera el record de tiradas
+            //Uso [clave, valor] ya que el metodo entries() de un Map devuelve un iterador de parejas clave-valor. Por lo que con un "for of" se puede acceder tanto a la clave como al valor de cada entrada del mapa
+            for (let [clave, valor] of mapaUsuariosPuntos.entries()) {
+                //Si el valor actual es menor que el minimo almacenado, actualizo el minimo y guardo el nombre del usuario con esa puntuacion
+                if (valor <= min) {
+                    usuarioMin = clave;
+                    min = valor;
+                }
+            }
+            
+            //Segun si la puntuacion supera, empata o es inferior al minimo se muestra un mensaje distinto
+            if (min > numTiradas) {
+                mensajePuntos.innerHTML = `ENHORABUENA ${nombreUsuario} HAS SUPERADO EL RÉCORD DE ${usuarioMin}: ${min} :)`;
+            } else if (min < numTiradas) {
+                mensajePuntos.innerHTML = `${nombreUsuario}... NO HAS SUPERADO EL RÉCORD DE ${usuarioMin}: ${min} :(`;
+            } else {
+                mensajePuntos.innerHTML = `${nombreUsuario}, HAS EMPATADO CON EL RÉCORD DE ${usuarioMin}: ${min}:|`;
+            }
+
+            //Almaceno el usuario y la puntuacion del usuario en localStorage
+            localStorage.setItem(`${nombreUsuario}`, `${numTiradas}`);
+        }
+
+        //Creo un nodo dialog
         let cuadro = document.createElement("dialog");
 
-        let titulo = document.createElement("h2");
-        titulo.innerText = `ENHORABUENA ${nombreUsuario}`;
-
+        //Creo un nodo p y le introduzco texto
         let puntos = document.createElement("p");
         puntos.innerHTML = `HAS TERMINADO EL JUEGO EN: <strong>${numTiradas}</strong> TIRADAS`;
 
-        cuadro.appendChild(titulo);
+        //Creo un nodo button, le introduzco texto y le annado un evento que recargara la pagina al hacer click sobre este
+        let botonJugar = document.createElement("button");
+        botonJugar.innerHTML = "VOLVER A JUGAR";
+        botonJugar.addEventListener("click", () => {
+            window.location.reload();
+        });
+
+        //Creo un nodo button, le introduzco texto y le annado un evento que cerrara el dialog al hacer click sobre este, ademas de desactivar el boton girarDado para que el usuario no pueda seguir jugando
+        let botonCerrar = document.createElement("button");
+        botonCerrar.innerHTML = "CERRAR";
+        botonCerrar.addEventListener("click", () => {
+            cuadro.close();
+            dadoButton.setAttribute("disabled", "");
+        });
+
+        //Creo un nodo img con la ruta de la imagen que el usuario ha escogido en la lista personalizar
+        let imagenHeroe = document.createElement("img");
+        imagenHeroe.setAttribute("src", `${rutaSprite}`);
+        imagenHeroe.setAttribute("style", `width: 30%; height: auto;`);
+
+        //Creo un nodo br (salto de linea)
+        let br = document.createElement("br");
+
+        //Annado todos los elementos en orden al dialog: Mensaje de superacion del record, puntos del usuario, imagen del heroe, salto de linea y los dos botones
+        cuadro.appendChild(mensajePuntos);
         cuadro.appendChild(puntos);
+        cuadro.appendChild(imagenHeroe);
+        cuadro.appendChild(br);
+        cuadro.appendChild(botonJugar);
+        cuadro.appendChild(botonCerrar);
 
 
+
+        //Finalmente annado el dialog al body y lo muestro con la funcion showModal() que es una funcion propia de los elementos dialog
         document.body.appendChild(cuadro);
         cuadro.showModal();
     }
