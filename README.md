@@ -31,6 +31,20 @@ Este proyecto implementa un juego interactivo basado en JavaScript que incluye c
    - Los mensajes finales varían según el rendimiento del jugador:
      - Nuevo récord, empate, o no superación del récord.
 
+### Funciones de script.js
+   - validarNombre(): Comprueba si el nombre introducido por el usuario tiene 4 letras o más y no contiene números ni caracteres especiales
+   - cambiarColor(): Cambia el color de las secciones para ayudar al usuario intuir que tiene que hacer
+   - empezarJuego(): Ejecuta las funciones dibujaMenus() y generarTablero()
+   - dibujarMenus(): Cambia el display (block/hidden) para los elementos del HTML
+   - generarTablero(): Genera 100 nodos de tipo "div" y los añade al tablero
+   - dibujarElementos(): Añade al tablero la imagen del héroe y del cofre
+   - cambiarPersonaje(): Esta función permite al usuario cambiar el color del personaje con una lista "select"
+   - agitarDado(): Cambia la imagen del dado a un gif que da la ilusión de que se está agitando un dado
+   - tirarDado(): Genera un número aletorio del 1 al 6 y cambia el gif del dado por una imagen del dado con el valor correspondiente
+   - pintarCasillas(): Cambia el estilo de las celdas seleccionables
+   - seleccionarCasilla(): Se ejecuta al hacer click sobre una de las celdas seleccionables, reinicia el estilo original de las celdas seleccionables y cambia de posición la imagen del personaje
+   - acabarJuego(): Se ejecuta al finalizar el juego, guardo en "localStorage" la información de la partida (Nombre y número de tiradas), también dibuja una ventana emergente que muestra la puntuación del       usuario y si ha superado o no el récord almacenado en "localStorage".
+
 ## Configuración y Archivos del Proyecto
 
 1. **Archivos principales:**
