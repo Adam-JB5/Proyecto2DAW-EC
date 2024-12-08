@@ -123,6 +123,10 @@ h1 {
     border: 3px grey dotted;
 }
 
+.celdaSeleccionable:hover {
+    background-color: #1a64a3;
+}
+
 .celdaHeroe {
     background-color: grey !important;
     background-image: unset !important;
