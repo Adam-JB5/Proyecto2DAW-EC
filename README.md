@@ -84,7 +84,8 @@ El proyecto utiliza un único archivo JavaScript (script.js) con las siguientes 
 
 ### Movimiento empezado
 ![image](https://github.com/user-attachments/assets/8a3f629c-50e2-4797-926d-ff4234f3e192)
-![image](https://github.com/user-attachments/assets/41c954c2-6f00-42a9-9acb-ff4bcdfa74db)
+![image](https://github.com/user-attachments/assets/3c5103a2-7629-41e2-9232-dfe8e110a7f2)
+
 
 ### Juego completado
 ![image](https://github.com/user-attachments/assets/f6657995-7581-45fe-8d1b-61d978bd8f0e)
