@@ -50,36 +50,53 @@ Este proyecto implementa un juego interactivo basado en JavaScript que incluye c
    ```bash
    git clone <URL-del-repositorio>
    cd <nombre-del-repositorio>
-Abre index.html en tu navegador.
+2. Abre index.html en tu navegador.
 
-Sigue estos pasos para jugar:
+3. Sigue estos pasos para jugar:
 
-Ingresa un nombre y haz clic en "Aceptar".
-Personaliza el personaje seleccionando un color.
-Lanza el dado y mueve el personaje según el número obtenido.
-Llega al cofre para finalizar el juego.
-Scripts
+   - Ingresa un nombre y haz clic en "Aceptar".
+   - Si el nombre es válido haz clic sobre el botón "Jugar".
+   - Personaliza el personaje seleccionando un color si lo deseas.
+   - Lanza el dado y mueve el personaje según el número obtenido.
+   - Llega al cofre para finalizar el juego.
+   
+## Scripts
+
 El proyecto utiliza un único archivo JavaScript (script.js) con las siguientes secciones principales:
 
-Recolección de elementos del DOM: Captura y manipula elementos clave como botones, inputs y secciones del tablero.
-Funciones de validación: Comprueba que el nombre ingresado sea válido.
-Generación dinámica del tablero: Crea y asigna estilos dinámicos a las casillas.
-Eventos de interacción: Implementa la lógica de interacción con botones, casillas seleccionables y el dado.
-Personalización del personaje: Cambia el sprite del héroe según la elección del jugador.
-Sistema de puntuación y almacenamiento: Maneja récords y puntuaciones usando localStorage.
-Capturas de Pantalla
+   1. Recolección de elementos del DOM: Captura y manipula elementos clave como botones, inputs y secciones del tablero.
+   2. Funciones de validación: Comprueba que el nombre ingresado sea válido.
+   3. Generación dinámica del tablero: Crea y asigna estilos dinámicos a las casillas.
+   4. Eventos de interacción: Implementa la lógica de interacción con botones, casillas seleccionables y el dado.
+   5. Personalización del personaje: Cambia el sprite del héroe según la elección del jugador.
+   6. Sistema de puntuación y almacenamiento: Maneja récords y puntuaciones usando localStorage.
+
+## Capturas de Pantalla
+
+### Tablero inicial
+![image](https://github.com/user-attachments/assets/a86dbd6c-368b-4508-9086-50008d2a644c)
+
+### Juego empezado
+![image](https://github.com/user-attachments/assets/7f294782-31a9-4ad8-b040-3627dd009f79)
+
+### Cambio de color
+![image](https://github.com/user-attachments/assets/1a58694a-d036-411d-a693-1fee139293b6)
+
+### Movimiento empezado
+![image](https://github.com/user-attachments/assets/8a3f629c-50e2-4797-926d-ff4234f3e192)
+![image](https://github.com/user-attachments/assets/41c954c2-6f00-42a9-9acb-ff4bcdfa74db)
+
+### Juego completado
+![image](https://github.com/user-attachments/assets/f6657995-7581-45fe-8d1b-61d978bd8f0e)
 
 
-Requisitos Técnicos
-Navegador moderno con soporte para:
-ES6 (ECMAScript 2015) o superior.
-Manejo de eventos y manipulación de DOM.
-localStorage para guardar puntuaciones.
-Mejoras Futuras
-Añadir niveles con mayor complejidad.
-Implementar diferentes modos de juego.
-Incluir una tabla de puntuaciones global con opciones para compartir resultados.
-Autor
-Desarrollado por [Tu Nombre].
+## Requisitos Técnicos
+   ### Navegador moderno con soporte para:
+   - ES6 (ECMAScript 2015) o superior.
+   - Manejo de eventos y manipulación de DOM.
+   - localStorage para guardar puntuaciones.
+
+## Autor
+Desarrollado por Adam Janah.
 
 ¡Diviértete jugando y superando récords!
