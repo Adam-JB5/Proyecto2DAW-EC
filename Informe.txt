@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 DECISIONES DE DISEÑO:
 
 - He decidido que todo el flujo del programa se desarrolle y se muestre en la misma pantalla, es decir, en vez borrar y añadir elementos en cada interacción del usuario, todos estos elementos siempre están presentes en pantalla y se van alterando mínimamente según el usuario avance en la aplicación.
@@ -49,58 +48,4 @@ COMPLICACIONES:
 La solución por la que me decanté finalmente fue invertir mucho tiempo jugando con las propiedades CSS de las celdas y de las imágenes hasta que por fin se adecuaron al tamaño de la pantalla sin deformaciones ni fallos estéticos. Las propiedades usadas entre muchas otras fueron: max-width, max-height, height, background-color, background-repeat...
 
 
-
-=======
-DECISIONES DE DISEÑO:
-
-- He decidido que todo el flujo del programa se desarrolle y se muestre en la misma pantalla, es decir, en vez borrar y añadir elementos en cada interacción del usuario, todos estos elementos siempre están presentes en pantalla y se van alterando mínimamente según el usuario avance en la aplicación.
-
-Un ejemplo de esto es la distribución de los "div". Principalmente se pueden ver 4 "div" diferenciados:
-	
-	- Título: Aquí se muestra un mensaje con el nombre del usuario una vez lo introduzca.
-
-	- Recuadro izquierdo superior: Aquí se encuentra el input del nombre, el cual se ocultará para mostrar una lista en la que el usuario puede personalizar el color del personaje.
-
-	- Recuadro izquierdo inferior: Aquí se mostrará un botón "Jugar", el cuál será sustituido con un dado y un botón "Girar dado" cuando el usuario haga click sobre este.
-
-	- Recuadro derecho: Aquí es donde se llevará a cabo el dibujado del tablero con sus respectivas casillas, personaje y cofre.
-
-
-
-- Como he mencionado anteriormente he decidido añadir un menú de personalización. Cuando el tablero, personaje y cofre son dibujados, se muestra un lista "select" en la que el usuario podrá elegir entre 5 colores, para cambiar el color del personaje. Estos cambios se efectúan gracias a que en la carpeta de imágenes hay 5 gifs distintos con las distintas variaciones de color.
-
-
-
-- Para que el usuario pueda entender mejor el flujo del programa, también he implementado una función que cambia el color de las distintas secciones para que llame la atención del usuario y pueda intuir que tiene que hacer para continuar jugando.
-
-
-
-- Una decisión estética que le da bastante atractivo al programa es que los dibujos de las casillas son generados aleatoriamente cada vez que se ejecuta el programa.
-
-
-
-- El usuario podrá moverse una cantidad de casillas igual o inferior al número que ha sacado en el dado. Cuando el usuario consigue mover al personaje al final del tablero (cofre) se ejecuta una función que realiza 2 acciones:
-
-	- Guarda la información de la partida en localStorage (Nombre y número de tiradas).
-	- Muestra al usuario una ventana emergente con la información de su partida y la comparación de puntuaciones entre las partidas registradas anteriormente en localStorage.
-
-
-
-- Es importante denotar que cuanto menor es la puntuación o número de tiradas, mejor posicionamiento tiene el usuario, ya que no tendría sentido de otra manera, porque un usuario puede inflar artificialmente el número de tiradas dando vueltas por el tablero sin acabar de llegar al cofre.
-
-
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-COMPLICACIONES:
-
-- Una complicación que aunque parezca que no fue bastante difícil de implementar, es que el programa sea responsive y que las imágenes no deformen el resto de casillas. Mi primera solución fue usar el método getComputedStyle(), para recoger el tamaño de las celdas a la hora de ejecución, pero esto significaría que habría que extraer el tamaño cada vez que el evento "resize" es lanzado y esto además de ser ineficiente es difícil de mantener en el código.
-
-La solución por la que me decanté finalmente fue invertir mucho tiempo jugando con las propiedades CSS de las celdas y de las imágenes hasta que por fin se adecuaron al tamaño de la pantalla sin deformaciones ni fallos estéticos. Las propiedades usadas entre muchas otras fueron: max-width, max-height, height, background-color, background-repeat...
-
-
-
->>>>>>> e52caeea1ca04059a5539f87b71ad6f76a6b5344
 - También me costó mucho entender como se pintan las casillas en las 4 direcciones cardinales, ya que solo le veía el sentido a las direcciones positivas (abajo, derecha) pero finalmente comprendí como trabajar con números negativos (arriba, izquierda) y condicionales para evitar recoger celdas inexistentes.
