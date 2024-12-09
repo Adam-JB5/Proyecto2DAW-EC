@@ -117,8 +117,13 @@ h1 {
     min-height: 2vh;
 }
 
+.celdaHeroe {
+    background-color: grey !important;
+    background-image: unset !important;
+}
+
 .celdaSeleccionable {
-    background-color: #88bae6;
+    background-color: #88bae6 !important;
     background-image: unset !important;
     border: 3px grey dotted;
 }
@@ -127,7 +132,3 @@ h1 {
     background-color: #1a64a3;
 }
 
-.celdaHeroe {
-    background-color: grey !important;
-    background-image: unset !important;
-}
