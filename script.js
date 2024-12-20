@@ -42,6 +42,42 @@ function inicio() {
     //Variable global, numero de tiradas
     let numTiradas = 0;
 
+    //Variable global, div con el aviso de rotacion de pantalla
+    let aviso;
+
+
+    //Esta funcion detecta si un usuario accede a la pagina desde un movil de forma vertical, manejo esto para que el usuario gire el movil y pueda empezar a jugar
+    window.addEventListener("resize", detectarOrientacion);
+    function detectarOrientacion() {
+        if (window.innerWidth < window.innerHeight) {
+            console.log("El dispositivo está en modo vertical.");
+            if (!aviso) { // Crear el aviso solo si no existe
+                aviso = document.createElement("div");
+                aviso.style.position = "fixed";
+                aviso.style.top = "0";
+                aviso.style.left = "0";
+                aviso.style.width = "100%";
+                aviso.style.height = "100%";
+                aviso.style.display = "flex";
+                aviso.style.flexDirection = "column";
+                aviso.style.alignItems = "center";
+                aviso.style.justifyContent = "center";
+                aviso.style.backgroundColor = "rgba(34, 34, 34, 0.6)";
+                aviso.style.zIndex = "1000";
+                aviso.innerHTML = "<img src='./img/rotar.gif' alt='Por favor, gire su dispositivo' style='max-width: 80%;'><p style='color: white; font-size: 1.2rem;'>Por favor, gire su dispositivo para continuar</p>";
+                document.body.prepend(aviso);
+            }
+        } else {
+            console.log("El dispositivo está en modo horizontal.");
+            if (aviso) { // Eliminar el aviso solo si existe
+                document.body.removeChild(aviso);
+                aviso = null; // Resetear la variable
+            }
+        }
+    }
+    // Ejecutar al cargar la página
+    detectarOrientacion();
+    
 
     //Esta funcion valida si el nombre tiene el numero correcto de caracteres
     nombreButton.addEventListener("click", validarNombre);
